@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ou Wang (王鸥) - Academic Profile</title>
-    <!-- 引入 FontAwesome 图标库以显示微信、邮箱、论文等图标 -->
+    <!-- 引入 FontAwesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0056b3; /* 学术蓝 */
+            --primary-color: #0056b3;
             --text-color: #333333;
             --text-light: #666666;
             --bg-color: #ffffff;
@@ -33,7 +33,6 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        /* 左侧侧边栏 */
         .sidebar {
             width: 30%;
             background-color: #fafafa;
@@ -51,232 +50,106 @@
             border: 3px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .name {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 0 5px 0;
-        }
-        .title {
-            font-size: 16px;
-            color: var(--text-light);
-            margin: 0 0 20px 0;
-        }
-        .contact-info {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-            margin-top: 30px;
-        }
-        .contact-info li {
-            margin-bottom: 12px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-        .contact-info i {
-            width: 20px;
-            color: var(--primary-color);
-            margin-right: 10px;
-            text-align: center;
-        }
-        /* 右侧主要内容区 */
-        .main-content {
-            width: 70%;
-            padding: 40px;
-            box-sizing: border-box;
-        }
-        h2 {
-            font-size: 20px;
-            color: #222;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        p {
-            margin-top: 0;
-            text-align: justify;
-        }
-        /* 列表样式（动态、教育、论文等） */
-        .item-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .item-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: baseline;
-        }
-        .date-col {
-            min-width: 90px;
-            font-weight: bold;
-            font-size: 14px;
-            color: var(--text-light);
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        .content-col {
-            font-size: 15px;
-        }
-        .publication-list li {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 14.5px;
-            line-height: 1.5;
-        }
-        .pub-title {
-            font-weight: bold;
-            color: #222;
-        }
-        .pub-authors {
-            color: var(--text-color);
-        }
-        .pub-journal {
-            font-style: italic;
-            color: var(--primary-color);
-        }
-        .highlight {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        .tag {
-            background-color: #eef2f5;
-            color: var(--text-light);
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 5px;
+        .name { font-size: 24px; font-weight: bold; margin: 0 0 5px 0; }
+        .title { font-size: 16px; color: var(--text-light); margin: 0 0 20px 0; }
+        .contact-info { list-style: none; padding: 0; text-align: left; margin-top: 30px; }
+        .contact-info li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: center; }
+        .contact-info i { width: 20px; color: var(--primary-color); margin-right: 10px; text-align: center; }
+        .main-content { width: 70%; padding: 40px; box-sizing: border-box; }
+        h2 { font-size: 20px; color: #222; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; }
+        .section { margin-bottom: 40px; }
+        
+        /* 简介半透明背景样式 */
+        .biography-wrapper {
+            position: relative;
+            padding: 25px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            background-image: url('research_cover.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            overflow: hidden;
         }
 
-        /* 移动端适配：微信打开时自动转为上下单栏排版 */
+        .item-list { list-style: none; padding: 0; margin: 0; }
+        .item-list li { margin-bottom: 15px; display: flex; align-items: baseline; }
+        .date-col { min-width: 90px; font-weight: bold; font-size: 14px; color: var(--text-light); margin-right: 15px; flex-shrink: 0; }
+        .content-col { font-size: 15px; }
+        .publication-list li { display: block; margin-bottom: 15px; font-size: 14.5px; line-height: 1.5; }
+        .pub-title { font-weight: bold; color: #222; }
+        .pub-journal { font-style: italic; color: var(--primary-color); }
+        .highlight { font-weight: bold; text-decoration: underline; }
+        .tag { background-color: #eef2f5; color: var(--text-light); font-size: 12px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; }
+
         @media (max-width: 768px) {
-            .container {
-                margin: 0;
-                border-radius: 0;
-                box-shadow: none;
-            }
-            .sidebar, .main-content {
-                width: 100%;
-                border-right: none;
-            }
-            .sidebar {
-                border-bottom: 1px solid var(--border-color);
-                padding: 30px 20px;
-            }
-            .main-content {
-                padding: 20px;
-            }
-            .item-list li {
-                flex-direction: column;
-            }
-            .date-col {
-                margin-bottom: 5px;
-            }
+            .container { margin: 0; border-radius: 0; box-shadow: none; }
+            .sidebar, .main-content { width: 100%; border-right: none; }
+            .sidebar { border-bottom: 1px solid var(--border-color); padding: 30px 20px; }
+            .main-content { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 左侧：个人信息 -->
     <div class="sidebar">
         <img src="avatar-academic.jpg" alt="王鸥学术头像" class="avatar">
         <h1 class="name">王鸥 (Ou Wang)</h1>
-        
         <p class="title">博士研究生<br>西安交通大学 生物医学工程</p>
-        
         <ul class="contact-info">
             <li><i class="fas fa-map-marker-alt"></i> 陕西省西安市</li>
             <li><i class="fas fa-building"></i> 西安交通大学</li>
             <li><i class="fas fa-building"></i> 生命科学与技术学院</li>
-             </ul>
+        </ul>
     </div>
 
-    <!-- 右侧：学术履历 -->
     <div class="main-content">
-        
-        <!-- 个人简介 -->
         <div class="section">
             <h2><i class="fas fa-user"></i> 简介 (Biography)</h2>
-            <p>王鸥，西安交通大学生命科学与技术学院生物医学工程专业博士生。2025年入选中国科协“青年科技人才培育工程”博士生专项计划。主要从事气体传感材料设计、界面调控、高性能传感器构筑和呼出气体检测方面的研究，重点围绕金属氧化物、高熵合金及单原子合金敏化剂的制备与气湿敏传感机制展开工作。目前以第一作者身份已在 <i>Advanced Functional Materials</i>、<i>ACS Nano</i>、<i>ACS Sensors</i>、<i>Sensors and Actuators B: Chemical</i> 等国际学术期刊发表 SCI 论文 7 篇，总引用量超 100 次。</p>
+            <div class="biography-wrapper">
+                <p>王鸥，西安交通大学生命科学与技术学院生物医学工程专业博士生。2025年入选中国科协“青年科技人才培育工程”博士生专项计划。主要从事气体传感材料设计、界面调控、高性能传感器构筑和呼出气体检测方面的研究，重点围绕金属氧化物、高熵合金及单原子合金敏化剂的制备与气湿敏传感机制展开工作。目前以第一作者身份已在 <i>Advanced Functional Materials</i>、<i>ACS Nano</i>、<i>ACS Sensors</i>、<i>Sensors and Actuators B: Chemical</i> 等国际学术期刊发表 SCI 论文 7 篇，总引用量超 100 次。</p>
+            </div>
         </div>
 
-        <!-- 最新动态 -->
         <div class="section">
             <h2><i class="fas fa-bullhorn"></i> 最新动态 (News)</h2>
             <ul class="item-list">
-                <li>
-                    <div class="date-col">2026.07</div>
-                    <div class="content-col">入选中国科技发展基金会举办的“2026奇点科学会议·飞鸟夏令营”。</div>
-                </li>
-                <li>
-                    <div class="date-col">2026.04</div>
-                    <div class="content-col">参加2026国际传感技术及应用大会作英文口头报告，并获“最佳口头报告奖”。</div>
-                </li>
-                <li>
-                    <div class="date-col">2026.01</div>
-                    <div class="content-col">作为项目负责人，获批主持西安交通大学“自由探索与创新”学生类项目。</div>
-                </li>
+                <li><div class="date-col">2026.07</div><div class="content-col">入选中国科技发展基金会举办的“2026奇点科学会议·飞鸟夏令营”。</div></li>
+                <li><div class="date-col">2026.04</div><div class="content-col">参加2026国际传感技术及应用大会作英文口头报告，并获“最佳口头报告奖”。</div></li>
+                <li><div class="date-col">2026.01</div><div class="content-col">作为项目负责人，获批主持西安交通大学“自由探索与创新”学生类项目。</div></li>
             </ul>
         </div>
 
-        <!-- 教育经历 -->
         <div class="section">
             <h2><i class="fas fa-university"></i> 教育经历 (Education)</h2>
             <ul class="item-list">
-                <li>
-                    <div class="date-col">2025 - 至今</div>
-                    <div class="content-col"><strong>西安交通大学</strong>，生物医学工程，博士生 </div>
-                </li>
-                <li>
-                    <div class="date-col">2022 - 2025</div>
-                    <div class="content-col"><strong>上海大学</strong>，化学，理学硕士 </div>
-                </li>
-                <li>
-                    <div class="date-col">2018 - 2022</div>
-                    <div class="content-col"><strong>成都师范学院</strong>，化学，理学学士 </div>
-                </li>
+                <li><div class="date-col">2025 - 至今</div><div class="content-col"><strong>西安交通大学</strong>，生物医学工程，博士生 </div></li>
+                <li><div class="date-col">2022 - 2025</div><div class="content-col"><strong>上海大学</strong>，化学，理学硕士 </div></li>
+                <li><div class="date-col">2018 - 2022</div><div class="content-col"><strong>成都师范学院</strong>，化学，理学学士 </div></li>
             </ul>
         </div>
 
-        <!-- 发表论文 -->
         <div class="section">
             <h2><i class="fas fa-file-alt"></i> 代表性论文 (Selected Publications)</h2>
             <ul class="publication-list">
-                <li>
-                    <div class="pub-title">1. Electron-Deficient Pd Enabled by Single-Atom Alloy Drives Fast and CO-Resistant Hydrogen Sensing.</div>
+                <li><div class="pub-title">1. Electron-Deficient Pd Enabled by Single-Atom Alloy Drives Fast and CO-Resistant Hydrogen Sensing.</div>
                     <div class="pub-authors"><span class="highlight">Ou Wang</span>, Leiyu Diao, Ping Li, Youyou Feng, Dong Cheng, Yaqiong Su, Jing Wei*.</div>
-                    <div class="pub-journal">Advanced Functional Materials, 2026, e74682. <span class="tag">IF=19.0 (一区)</span></div>
-                </li>
-                <li>
-                    <div class="pub-title">2. Anchoring Sn-Containing High-Entropy Alloy PtFeCoNiCuSn on SnO2 for Improving the Acetone Detection Ability.</div>
+                    <div class="pub-journal">Advanced Functional Materials, 2026, e74682. <span class="tag">IF=19.0 (一区)</span></div></li>
+                <li><div class="pub-title">2. Anchoring Sn-Containing High-Entropy Alloy PtFeCoNiCuSn on SnO2 for Improving the Acetone Detection Ability.</div>
                     <div class="pub-authors"><span class="highlight">Ou Wang</span>, Heyu Wang, Yu Tang, Zhiheng Ma, Bao-Li An, Yongmei Zhao, Xiaohong Wang*, Jiaqiang Xu*.</div>
-                    <div class="pub-journal">ACS Nano, 2025, 19, 50, 42466–42479. <span class="tag">IF=15.8 (一区)</span></div>
-                </li>
-                <li>
-                    <div class="pub-title">3. Catalytic Activation Function of Noble-Metal-Free High-Entropy Alloy for Enhancing SnO2 Acetone Detection Capability.</div>
+                    <div class="pub-journal">ACS Nano, 2025, 19, 50, 42466–42479. <span class="tag">IF=15.8 (一区)</span></div></li>
+                <li><div class="pub-title">3. Catalytic Activation Function of Noble-Metal-Free High-Entropy Alloy for Enhancing SnO2 Acetone Detection Capability.</div>
                     <div class="pub-authors"><span class="highlight">Ou Wang</span>, Zhiheng Ma, Zhenggang Xue*, Muyu Yan, Bao-Li An, Yongmei Zhao, Jiaqiang Xu*, Xiaohong Wang*.</div>
-                    <div class="pub-journal">ACS Nano, 2025, 19, 13, 13325−13340. <span class="tag">IF=15.8 (一区)</span></div>
-                </li>
-                <li>
-                    <div class="pub-title">4. Improving triethylamine vapor detection capabilities of In2O3 via aluminum-mediated isomorphic replacement in the crystalline structure</div>
-                     <div class="pub-authors"><span class="highlight">Ou Wang</span>, Jiawei Kong, Yue Sun, Yu Tang, Heyu Wang, BaoLi An, Qingmin Hu*, Jiaqiang Xu*, Xiaohong Wang*.</div>
-                    <div class="pub-journal">ACS Sensors, 2026, 11, 6, 5143–5157. <span class="tag">共同一作, IF=9.1 (一区)</span></div>
-                </li>
-                <li>
-                    <div class="pub-title">5. Tailoring the Ni−O Microenvironment in Amorphous-Dominated Highly Active and Stable Zn/NiO for Hydrogen Sulfide Detection.</div>
+                    <div class="pub-journal">ACS Nano, 2025, 19, 13, 13325−13340. <span class="tag">IF=15.8 (一区)</span></div></li>
+                <li><div class="pub-title">4. Improving triethylamine vapor detection capabilities of In2O3 via aluminum-mediated isomorphic replacement in the crystalline structure</div>
+                    <div class="pub-authors"><span class="highlight">Ou Wang</span>, Jiawei Kong, Yue Sun, Yu Tang, Heyu Wang, BaoLi An, Qingmin Hu*, Jiaqiang Xu*, Xiaohong Wang*.</div>
+                    <div class="pub-journal">ACS Sensors, 2026, 11, 6, 5143–5157. <span class="tag">IF=9.1 (一区)</span></div></li>
+                <li><div class="pub-title">5. Tailoring the Ni−O Microenvironment in Amorphous-Dominated Highly Active and Stable Zn/NiO for Hydrogen Sulfide Detection.</div>
                     <div class="pub-authors"><span class="highlight">Ou Wang</span>, Jiawei Kong, Zhenggang Xue, BaoLi An, Jiaqiang Xu*, Xiaohong Wang*.</div>
-                    <div class="pub-journal">ACS Sensors, 2024, 9, 6, 3233–3243. <span class="tag">IF=9.1 (一区)</span></div>
-                </li>
+                    <div class="pub-journal">ACS Sensors, 2024, 9, 6, 3233–3243. <span class="tag">IF=9.1 (一区)</span></div></li>
             </ul>
-            <p style="font-size: 13.5px; color: var(--text-light); margin-top: 10px;">* 另在ACS Sensors 发表一作论文 1 篇; Sensors and Actuators B: Chemical 发表一作论文 1 篇；已受理中国发明专利 2 项。</p>
         </div>
-
-   
     </div>
 </div>
 
